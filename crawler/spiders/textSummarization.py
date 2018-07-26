@@ -1,9 +1,13 @@
+###############################################################################################
+## Text Summarization dilakukan setelah semua text frasanya di remove atau Stopwords Removal ##
+###############################################################################################
+
 import re   #Import library Regex
 import string   #Import library string
 import json     #Import json
 
 #Membuka atau load file
-with open("ceritaFIX.txt",'r',encoding='utf-8') as f:
+with open("textStopwords.txt",'r',encoding='utf-8') as f:
     text = f.read()
     f.close()
 

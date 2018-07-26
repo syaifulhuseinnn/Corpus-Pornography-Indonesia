@@ -1,6 +1,6 @@
 import re
 
-with open("convertedToText-1.txt",'r',encoding='utf-8') as f:
+with open("convertedToText.txt",'r',encoding='utf-8') as f:
     text = f.read()
     f.close()
 
@@ -26,9 +26,22 @@ def remove_script(text):
     clean = re.sub(r'<script.+?</script>', '', text, flags=re.DOTALL)
     return clean
 
+# def delete_space(text):
+#     result = text
+#     result = re.sub(r'', '', result, 1)
+#     result = re.sub(r'  ', '', result, 1)
+#     result = re.sub(r'   ', '', result, 1)
+#     result = re.sub(r'    ', '', result, 1)
+#     result = re.sub(r'     ', '', result, 1)
+#     result = re.sub(r'      ', '', result, 1)
+#     return result
+
 a = remove_script(text)
 b = remove_html_tags(a).lower().strip()
+# c = text.replace('related post ','')
+# d = delete_space(c).split()
+# e = ' '.join(d)
 
-with open('cleanText.txt','w',encoding='utf-8') as f:
+with open('ceritaDewasaFix.txt','w',encoding='utf-8') as f:
     d = f.write(b)
     f.close()

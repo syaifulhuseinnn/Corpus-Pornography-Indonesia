@@ -1,5 +1,5 @@
 #Membuka file atau load file ceritaFIX.txt
-with open("ceritaFIX.txt",'r',encoding='utf-8') as f:
+with open("ceritaDewasaFix.txt",'r',encoding='utf-8') as f:
     text = f.read()
     f.close()
 
