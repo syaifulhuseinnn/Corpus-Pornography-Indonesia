@@ -38,6 +38,6 @@ for words in frequency_list:
     data.append(collect)
 
 #Menyimpan output ke dalam file
-with open('textFrequency.json','w',encoding='utf-8') as f:
+with open('wordFrequency.json','w',encoding='utf-8') as f:
     json.dump(data, f)
     f.close()
