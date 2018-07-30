@@ -19,7 +19,8 @@ def normalizeText(text):
 
     return result.strip()
 
-#Split kata pada file
+#Split kata pada file atau tokenization
+
 textSplit = normalizeText(text).split()
 
 frequency = {}
