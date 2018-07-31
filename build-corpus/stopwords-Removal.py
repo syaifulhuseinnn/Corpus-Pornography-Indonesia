@@ -1,28 +1,37 @@
 #Import Stopwords Factory Class
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 
-#Membuka atau load file
-with open("coba-cerita-lagi.txt",'r',encoding='utf-8') as f:
-    text = f.read()
-    f.close()
+class stopwordsRemoval():
+    def __init__(self, inputPath):
+        self.text = self.read_file(inputPath)
 
-#Membuka atau load file
-with open("id stopwords 2016.txt",'r',encoding='utf-8') as f:
-    list_stopwords = f.read()
-    f.close()
+    def read_file(self, dataInputPath):
+        with open(dataInputPath, encoding='utf-8') as f:
+            text = f.read()
+            f.close()
 
-# kalimat = 'Aku pernah mendengar Aisya bercerita bahwa sebenarnya ia tidak terlalu senang dengan kabar perjodohan yang diatur oleh orang tuanya.'
+        return text
 
-#Membuat Factory
-stop_factory = StopWordRemoverFactory()
-more_stopwords = list_stopwords.split("\n")
+    def stopwords_removal(self, text, list_stopwords, output_stopwords):
+        with open(listStopwordsPath,'r',encoding='utf-8') as f:
+            list_stopwords = f.read()
+            f.close()
 
-#Tambahkan Stopword Baru
-data = stop_factory.get_stop_words()+more_stopwords
+        stop_factory = StopWordRemoverFactory()
+        more_stopwords = list_stopwords.split("\n")
 
-stopword = stop_factory.create_stop_word_remover()
+        data = stop_factory.get_stop_words() + more_stopwords
+        stopwords = stop_factory.create_stop_word_remover()
+        remove_stopwords = stopwords.remove(text)
 
-#Menyimpan output ke dalam file
-with open("textStopwords.txt",'w',encoding='utf-8') as f:
-    a = f.write(stopword.remove(text))
-    f.close()
+        with open(stopwordsRemovalPath,'w',encoding='utf-8') as f:
+            f.write(remove_stopwords)
+
+        return remove_stopwords
+
+if __name__=='__main__':
+    dataInputPath = 'cerita-fix-banget.txt'
+    listStopwordsPath = 'id stopwords 2016.txt'
+    stopwordsRemovalPath = 'text-stopwords-remove.txt'
+    call_file = stopwordsRemoval(dataInputPath)
+    output_file = call_file.stopwords_removal(call_file,listStopwordsPath,stopwordsRemovalPath)
