@@ -4,6 +4,7 @@ from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFacto
 class stopwordsRemoval():
     def __init__(self, inputPath):
         self.text = self.read_file(inputPath)
+        print("Process...")
 
     def read_file(self, dataInputPath):
         with open(dataInputPath, encoding='utf-8') as f:
@@ -27,6 +28,8 @@ class stopwordsRemoval():
         with open(stopwordsRemovalPath,'w',encoding='utf-8') as f:
             f.write(remove_stopwords)
 
+        print("Done!")
+
         return remove_stopwords
 
 if __name__=='__main__':
@@ -34,4 +37,4 @@ if __name__=='__main__':
     listStopwordsPath = 'id stopwords 2016.txt'
     stopwordsRemovalPath = 'text-stopwords-remove.txt'
     call_file = stopwordsRemoval(dataInputPath)
-    output_file = call_file.stopwords_removal(call_file,listStopwordsPath,stopwordsRemovalPath)
+    output_file = call_file.stopwords_removal(call_file.text,listStopwordsPath,stopwordsRemovalPath)
