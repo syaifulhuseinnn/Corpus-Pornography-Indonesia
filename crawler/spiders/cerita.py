@@ -1,4 +1,4 @@
-import scrapy   #Import library
+import scrapy  #Import library
 from scrapy.selector import HtmlXPathSelector
 
 class Cerita(scrapy.Spider):

@@ -1,4 +1,5 @@
 #Import Stopwords Factory Class
+import time
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 
 class stopwordsRemoval():
@@ -13,7 +14,7 @@ class stopwordsRemoval():
 
         return text
 
-    def stopwords_removal(self, text, list_stopwords, output_stopwords):
+    def stopwords_removal(self, list_stopwords, output_stopwords):
         with open(listStopwordsPath,'r',encoding='utf-8') as f:
             list_stopwords = f.read()
             f.close()
@@ -23,7 +24,7 @@ class stopwordsRemoval():
 
         data = stop_factory.get_stop_words() + more_stopwords
         stopwords = stop_factory.create_stop_word_remover()
-        remove_stopwords = stopwords.remove(text)
+        remove_stopwords = stopwords.remove(self.text)
 
         with open(stopwordsRemovalPath,'w',encoding='utf-8') as f:
             f.write(remove_stopwords)
@@ -33,8 +34,12 @@ class stopwordsRemoval():
         return remove_stopwords
 
 if __name__=='__main__':
+    start_time = time.time()
     dataInputPath = 'cerita-fix-banget.txt'
     listStopwordsPath = 'id stopwords 2016.txt'
     stopwordsRemovalPath = 'text-stopwords-remove.txt'
     call_file = stopwordsRemoval(dataInputPath)
-    output_file = call_file.stopwords_removal(call_file.text,listStopwordsPath,stopwordsRemovalPath)
+    print(len(call_file.text.split()))
+    
+    output_file = call_file.stopwords_removal(listStopwordsPath,stopwordsRemovalPath)
+    print("------ %s seconds ------" % (time.time()-start_time))
